@@ -1,0 +1,91 @@
+---
+title: "Supplementary Table S1"
+output: html_document
+bibliography: 
+  - haloref.bib
+  - Halotolerance.bib
+csl: evolution.csl
+link-citations: true
+---
+
+## Column descriptions
+
++ *estuary, marine,freshwater:* Proportions of GBIF records occurring in estuarine, marine, and freshwater spatial polygons. Values are arcsine transformed.
+
++ *m_dtco:* Median distance to coastline in km. Negative values indicate an inland direction and posotive an offshore direction.
+
++ *span_dtco:* Span of range of distances to coastline (in km). 
+
++ *sal:* mean salinity in ppt of lat/long records based on [World Ocean Atlas levitus data](https://www.nodc.noaa.gov/OC5/woa13/) [@garcia2013world].
+
++ *fw_status:* A value of 1 indicates that the species is included in [Freshwater Biodiversity Data Portal](http://data.freshwaterbiodiversity.eu/) [@schmidt2019freshwater] 
+
++ *isMarine:* A value of 1 indicates that the species is classified as a marine species in the [World Register of Marine Species (WoRMS)](https://www.marinespecies.org/) database [@costello2013global].
+
++ *isFreshwater:* A value of 1 indicates that the species is classified as a freshwater species in WoRMS.
+
++ *rf_pred:* Halotolerance prediction based on Breiman's random forest machine learning classification [@breiman2001random].
+
++ *h2o_pred:* Halotolerance prediction based on gradient boosted classification trees using H2O [@h2o].
+
++ *FB_HT:* Halotolerance according to FishBase as Marine, Freshwater, or Euryhaline.
+
++ *Final_HT:* Final halotolerance category based on ML predictions and literature review (see main text for details).
+
++ *Final_Diad:* Final diadromous category based on @corush2019evolutionary, ML predictions, and literature review (see main text for details).
+
++ *Final_HTd:* Combined final halotolerance nd diadromous category based.
+
++ *verification, Diad_verification:* Indicates how "Final_HT" and "Final_Diad" were verified:
+
+  - AGREEMENT: For "verification", FishBase category and both ML classifications all agree. For "Diad_verification", original diadromous category based on @corush2019evolutionary and both ML classifications all agree.
+  - NDFER: Literature review resulted in no definitive freshwater or euryhaline records.
+  - NDMER: Literature review resulted in no definitive marine or euryhaline records.
+  - NDDR: Literature review resulted in no definitive diadromous records.
+  - see source: Verified by the reference under "source" or "Diad_source".
+  
++ *source, Diad_source:* Reference used to verify "Final_HT" and "Final_Diad".
+
+Rows in red text indicate that the final halotolerance category differs from FishBase.
+
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(xtable)
+library(DT)
+```
+
+```{r tab,echo=F,messages=F,include=F}
+tab_dat <- read_csv("data/Diad_Holotolerence_data.csv") %>% 
+  mutate(source=ifelse(verification=="see source",source,source),
+         Diad_source=ifelse(Diad_verification=="see source",paste0("@",Diad_source),Diad_source)
+         ) %>% 
+  mutate(verification=ifelse(is.na(verification),"AGREEMENT",verification),
+         Diad_verification=ifelse(is.na(Diad_verification),"AGREEMENT",Diad_verification)) %>% 
+  mutate(source=ifelse(is.na(source),"",source),
+         Diad_source=ifelse(is.na(Diad_source),"",Diad_source)
+         ) %>%
+  dplyr::select(Species,estuary:m_dtco,span_dtco,sal:source,Corush_Diad,rf_pred_diad:Orig_Diad,Final_Diad:Diad_source)
+
+
+
+color_me <- with(tab_dat,which(FB_HT!=Final_HT))
+k <- tab_dat %>%  mutate(Final_HTb=ifelse(Final_Diad=="Diadromous","Euryhaline-Diadromous",Final_HT))
+k %>% saveRDS("data/Diad_Final_Halotolerance.RDS")
+
+
+
+```
+
+```{r, bidtab,message=FALSE,echo=FALSE}
+k%>%
+  kableExtra::kable(format="html",digits=3) %>%
+  row_spec(color_me,color="red") %>%
+  kable_styling(fixed_thead = T) %>%
+  scroll_box(width = "100%", height = "1000px")
+
+# num_col <- which(sapply(k,class)=="numeric") 
+# DT::datatable(k,options=list(scrollX = T)) %>% formatRound(columns = num_col,digits=3)
+```
+## Supplementary References

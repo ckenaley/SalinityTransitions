@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2023)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Salinity_Transitions.aux
+The style file: evolution.bst.bst
+Database file #1: halotolerance.bib
+You've used 62 entries,
+            2892 wiz_defined-function locations,
+            945 strings with 16257 characters,
+and the built_in function-call counts, 39627 in all, are:
+= -- 3214
+> -- 2176
+< -- 47
++ -- 729
+- -- 657
+* -- 2790
+:= -- 6363
+add.period$ -- 191
+call.type$ -- 62
+change.case$ -- 518
+chr.to.int$ -- 62
+cite$ -- 62
+duplicate$ -- 2803
+empty$ -- 2759
+format.name$ -- 843
+if$ -- 7891
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 576
+newline$ -- 319
+num.names$ -- 248
+pop$ -- 1134
+preamble$ -- 1
+purify$ -- 462
+quote$ -- 0
+skip$ -- 896
+stack$ -- 0
+substring$ -- 1904
+swap$ -- 1266
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 546
+warning$ -- 0
+while$ -- 287
+width$ -- 0
+write$ -- 810

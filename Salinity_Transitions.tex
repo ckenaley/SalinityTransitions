@@ -1,0 +1,338 @@
+\documentclass[11pt]{article}
+\usepackage[sc]{mathpazo} %Like Palatino with extensive math support
+\usepackage{fullpage}
+\linespread{1.7}
+\usepackage[utf8]{inputenc}
+\usepackage{lineno}
+\usepackage{titlesec}
+\usepackage{mathpazo}
+%\usepackage{notoccite} %for sorting
+
+\usepackage{amsmath}
+
+\titleformat{\section}[block]{\Large\bfseries\filcenter}{\thesection}{1em}{}
+\titleformat{\subsection}[block]{\Large\itshape\filcenter}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[block]{\large\itshape}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]{\itshape}{\theparagraph}{1em}{}[. ]\renewcommand{\refname}{Literature Cited}
+
+%added by author
+\usepackage{graphicx}
+\graphicspath{{./figures/}}
+\usepackage[hidelinks]{hyperref}
+%\linenumbers
+\def\linenumberfont{\normalfont\small\sffamily}
+%\usepackage[numbers]{natbib}
+\usepackage[authoryear, round, sort]{natbib}
+\usepackage{graphics}
+\usepackage{textcomp}%for symbols 
+\usepackage{gensymb}
+\usepackage{tabularx}	
+\usepackage{upgreek}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{pdflscape} % for 'landscape' environment
+\usepackage[table]{xcolor}
+\usepackage[skip=1ex]{caption}% font=footnotesize
+%\usepackage[sort]{cite}
+
+\usepackage[capitalise,noabbrev]{cleveref}
+
+%\usepackage[nomarkers]{endfloat} %for figures at end of doc
+
+% define lightgray
+\definecolor{lightgray}{gray}{0.95}
+
+% alternate rowcolors for all long-tables
+\let\oldlongtable\longtable
+\let\endoldlongtable\endlongtable
+\renewenvironment{longtable}{\rowcolors{2}{white}{lightgray}\oldlongtable} {
+\endoldlongtable}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Line numbering
+%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{lineno}
+% Please use line numbering with your initial submission and
+% subsequent revisions. After acceptance, please turn line numbering
+% off by adding percent signs to the lines %\usepackage{lineno} and
+% to %\linenumbers{} and %\modulolinenumbers[3] below.
+
+
+\linenumbers{}
+%\modulolinenumbers[3] 
+
+\title{Salinity Transitions in Ray-finned Fishes: The Roles of Diadromy and Euryhalinity}
+
+% This version of the LaTeX template was last updated on
+% January 11, 2018.
+
+%%%%%%%%%%%%%%%%%%%%%
+% Authorship
+%%%%%%%%%%%%%%%%%%%%%
+% Please remove authorship information while your paper is under review,
+% unless you wish to waive your anonymity under double-blind review. You
+% will need to add this information back in to your final files after
+% acceptance.
+
+\author{
+William P. O'Connor
+Christopher P. Kenaley$^*$
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent Department of Biology, Boston College, Chestnut Hill, MA 02465, USA\\ 
+$^{*}$Author for correspondence (kenaley@bc.edu)\\
+
+\bigskip
+
+ 
+\bigskip
+
+\textit{Keywords}: Halotolerance, Actinopterygii, ancestral states, comparative methods, machine learning
+
+\bigskip
+
+%\linenumbers{}
+%\modulolinenumbers[3]
+
+\newpage{}
+
+\section*{Abstract}
+
+Ray-finned fishes inhabit a broad range of aquatic habitats and the evolutionary history of this lineage is marked by repeated transitions between marine and freshwater systems. Euryhalinity and diadromy have often been invoked as key mediators of marine-freshwater transitions. To date, no macroevolutionary study of stenohaline transitions that incorporates the roles of euryhalinity and diadromy has been undertaken. We sought to assess whether euryhalinity and diadromy were key innovations required for stenohaline transitions by evaluating the historical patterns of marine-freshwater transitions and undertaking state-dependent diversification analysis. Based on stochastic character mapping, we outlined the transition patterns of halohabitat-diadromy states. We found a complicated pattern of marine-freshwater transitions in which (1) transitions from marine to fresh waters were mediated both by diadromy and, more commonly, non-diadromous euryhalinity and (2) transitions from fresh to marine waters we driven solely by euryhalinity. We also found that net speciation rates varied significantly between each state, with euryhaline and diadromous lineages having the lowest and highest values, respectively. Based on these results, we assert that euryhalinity was the preeminent innovation that permitted ray-finned fishes to access new biomes and that competition in new salinity niches likely plays an important role in promoting or limiting transitions.
+
+\newpage
+
+\section*{Introduction}
+
+Ray-finned fishes (Actinopterygii), the most diverse vertebrate lineage, have invaded nearly every aquatic habitat, from deep and shallow marine systems, to lacustrine and riverine systems and estuaries alike. The evolutionary history of this group is marked by repeated transitions between marine and freshwater habitats \citep{de2022patterns, bloom2012molecular, carrete2012there, davis2017widespread, corush2019evolutionary, rabosky2020speciation}. Each one of these transitions represents an extreme shift in terms a new ecological niche \citep{lee1999causes, carrete2012there,seehausen2014speciation, de2022patterns} and drastically different physiological requirements \citep{kultz2015physiological,evans2008}. 
+
+Ray-finned fishes maintain the osmolality of their extracellular body fluids at a relatively constant level of at approximately 300 mosmol kg$^{-1}$ and largely independent of environmental salinity. Therefore, fishes inhabiting stenohaline environments must maintain an osmotic balance in the face of a stark, but consistent, osmotic pressure to either achieve a hyposmotic gradient in the case of stenohaline freshwater fishes or hyperosmotic gradient in the case of stenohaline marine fishes.  Euryhaline fishes must cope with substantial changes in environmental osmolality, often over short temporal time scales. They may do so either as diadromous species that migrate between stenohaline systems or non-diadromous species that inhabit estuaries where tidal dynamics and freshwater systems influence salinity regimes.  The physiological shifts that mediate stenohaline transitions---either marine to fresh or the reverse---have been studied extensively \citep{mccormick2013fish,kultz2015physiological,edwards2012principles,mccormick2001endocrine,mccormick1987preparatory}. These include complicated functional changes in tissues of the gill, kidney, skin and intestine that span several scales from the epigenetic to tissue level. Given the osmoregulatory challenges of stenohaline species and the drastic physiological changes that must accompany transitions between stenohaline environments, euryhalinity must be seen as an important capability mediating these transitions.
+
+In addition to physiological shifts, ecological and macroevolutionary dynamics are key drivers of major transitions in habitat. As a theory, ecological opportunity has often been invoked to explain macroevolutionary transitions between major biogeographical and physical regimes across the tree of life \citep{yoder2010ecological,stroud2016ecological,simpson1984tempo,simpson1953major}, and in particular, marine-freshwater transitions in fishes \citep{davis2012marine,betancur2012apparent, santini2013habitat}. This theory states that a new resource niche can be exploited by ecologically capable lineages where species richness of ecologically similar taxa or competition is low. Ecological opportunity can be mediated by a combination of biogeographical processes, including dispersal, ecological processes, including extinction of species of similar ecology, and the evolution of key innovations that permit the use the novel resources. 
+
+In the context of marine-freshwater transitions, the evolution of the ability to withstand a wide range of salinity, i.e., euryhalinity, may be seen as one such innovation that permits these transitions by expanding the potential niche and ecological range of a lineage. In addition, diadromy, the cyclic migration between stenohaline systems, may be seen as a complementary behavioral adaption that, when coupled with euryhalinity mediates marine-freshwater transitions, and the reverse, by expanding and partitioning resource use across the life history of a lineage \citep{mcdowall1997evolution,mcdowall2001diadromy}.
+
+\cite{gross1987evolution} was the first to codify the important relationship between euryhalinity and diadromy in shaping transitions between marine and freshwaters \citep{mcdowall1997evolution}, suggesting that euryhalinity is an important preliminary state and diadromy was a key final state before permanent invasion of either fresh or marine waters from marine or freshwaters. \cite{mcdowall1997evolution} remarked on the intuitive nature of this framework and posited that the predominant forms of diadromy---anadromy and catadromy---were logical outcomes of such a process. For example, in the case of marine-to-fresh transitions, a lineage of marine origin explores freshwaters in adulthood to spawn after the evolution of euryhalinity, and transitions into a diadromous species after this process reaches a steady sate. If this new environment offers some new advantage that permits increased reproductive success, then this marine-to-fresh transition becomes complete. This potential process is, of course, similar for freshwater to marine transitions, but involves different starting and final salinity habitats. 
+
+The modest body of research devoted to the broader macroevolutionary dynamics of salinity-habitat transitions represents several interesting trends. \cite{betancur2015fossil} found that transition dynamics vary asymmetrically between habitats with marine lineages colonizing freshwaters rivers more frequently freshwater lineage invading marine habitats. This important and illuminating study focused on transitions between stenohaline habitats (fresh-to-marine and marine-to-fresh) exclusively, however, leaving open the question of what role euryhalinity or diadromous behavior play in salinity transitions. In addition, \cite{betancur2015fossil} limited their phylogenetic framework to a super tree of 1822 extant and extinct taxa. In a more expansive analysis of over 13000 species, \cite{rabosky2020speciation} also found that marine-to-freshwater transitions were much more common than the reverse. This analysis implemented a stepwise gain and loss model whereby all transitions between marine and freshwater environments moved through a brackish intermediate stage. Like \cite{betancur2015fossil}, \cite{rabosky2020speciation} did not explicitly address the role euryhalinity or diadromy played in evolutionary transitions between stenohaline environments. \cite{corush2019evolutionary} found that transitions to diadromy were rare but that transitions out of diadromy into both fresh and marine habitats were common. This study focused on the role of diadromy in shaping stenohaline transitions, but did not evaluate the influence of non-diadramous euryhalinity in mediating transitions between marine and freshwater states. Taken as a whole, these studies reveal the need to integrate a more comprehensive assessment of salinity tolerance and migration behavior in macroevolutionary studies of shifts in major salinity habitat.
+                                        
+The primary goal of our study was to empirically assess the intermediate state hypothesis, specifically that euryhalinity and diadromy, either alone or together, are key innovations required for stenohaline transitions. Specifically, we sought to evaluate the historical patterns of marine-freshwater transitions by exploring two models: (1) these transitions require the evolution of a euryhaline state \textit{and}, the behavioral strategy of diadromy, or (2) they require only euryhalinity. Secondarily, we also sought to evaluate the role euryhalinity and diadromy play in marine-freshwater transitions as transitional states or adaptive life histories. To address these aims, we undertook several comparative phylogenetic analyses, including historical reconstructions of halotolerance and diadromy and state-dependent diversification analysis. Through our historical reconstructions, we sought to uncover the ancestral  patterns of halohabitat-diadromy transitions between them. We hypothesized that if both euryhalinity and diadromy are required as ordered transitions to make marine-to-fresh or fresh-to-marine transitions, we would uncover a pattern in which transitions are similarly common from marine or freshwater to euryhalinity, from euryhalinity to diadromy, and diadromy to marine or freshwater. Alternatively, we hypothesized that if marine-freshwater transitions are mediated by euryhalinity alone, we would uncover a pattern in which marine or fresh water transtitions to euryhalinity and transitions from euryhalinity to fresh or marine waters were similar but much more common than transitions into and out of diadromy.  Through our diversification analysis, we sought to uncover whether or not euryhalinity and diadromy represent transient conditions, stepping stones on the path to marine-freshwater transitions or adaptive strategies. We assert that relatively low and hight net diversification rates represent a transient and adaptive strategies, respectively.
+
+
+\section*{Materials and Methods}
+
+\subsection*{Salinity Habitat Classification}
+
+To classify salinity habitat (i.e., halohabitat) requires a clear understanding of what this phenotype encompasses and precise definitions of each state. Here we treat halohabitat as ecological halotolerance, the realized niched of a species. This contrasts physiological halotolerance, or the potential niche, defined as the physiological range of a species with regards to its osmotic tolerance \citep{schultz2012euryhalinity}.  We classified halohabitat of each species in our study as one of three states, either stenohaline fresh, stenohaline marine, or euryhaline. The definition of stenohalinity is rather simple and generally agreed upon:  stenohaline fresh species only occur in fresh water of very low salinity close to 0 ppt and stenohaline marine species occur in marine waters of high salinity, greater than 30 ppt. However, the definition of euryhalinity is more problematic. Here we follow \cite{schultz2012euryhalinity}, \cite{kultz2015physiological}, and \cite{lee1999causes} in defining euryhalinity as the ability to live in both stenohaline habitats or to live in brackish habitats of considerably varying salinity over time and space. The ability to traverse both stenohaline environments is generally indicative of diadromy while living in brackish environment generally indicates estuarine habitat utilization. These two life histories may require different or similar physiological mechanisms \citep{kultz2015physiological}; however, underlying both is the ability to maintain osmotic balance across a wide range of salinity. In our comparative analyses, we make the distinction between euryhaline-nondiadromous and euryhaline diadromous states (see below).
+ 
+We attempted to assign a halohabitat state to each species of the Actinopterygii included in the phylogenetic hypothesis published by \cite{rabosky2018inverse}. To do this, we applied a multistep framework that included cross-referencing halotabitat categories reported by FishBase \citep{froese2010fishbase} and vetting these designations a series of machine learning (ML) operations to predict halohabitat.
+
+We began our assignment process by assembling salinity habitat data reported by FishBase \citep{froese2010fishbase} using the \texttt{rfishbase} package \citep{boettiger2012rfishbase} written for\texttt{R} computing environment \citep{r}. FishBase classifies species as marine, freshwater, or brackish. We initially applied the euryhaline state to all brackish species. After compiling this information, we performed a preliminary qualitative assessment of assigned categories and noted several errors, e.g., species known to be stenohaline but categorized by FishBase as brackish and euryhaline. To address these issues and evaluate all of the salinity habitat designations for our study species in FishBase, we undertook an ML-based classification analysis. For this, we began by assembling a list of marine and freshwater species from the World Register of Marine Species (WoRMS) \citep{costello2013global} using the   \texttt{R} package \texttt{worms} \citep{worms} and a list of freshwater fish species downloaded directly from the Freshwater Biodiversity Data Portal (FBDP) \citep{schmidt2019freshwater}. This process resulted in three variables: FBDP freshwater, WoRMS freshwater, and WoRMS marine. Each was coded as "0" or "1", with "1" representing presenting freshwater, freshwater, and marine, respectively. 
+
+Next, we assembled a maximum of 1000 georeferenced museum records for each species by querying the Global Biodiversity Information Facility (GBIF) using the \texttt{R} package \texttt{rgbif} \citep{rgbif}, totaling 1,967,067 records or 178 $\pm$ 262 records per species. Each individual record was evaluated for common spatial errors in biological collections using the R package \texttt{CoordinateCleaner}. For this we flagged and removed any coordinates that represented country capitals and geographic centroids, those corresponding to the locality of collection institutions or GBIF headquarters, and any outliers. Outliers were defined as those records that were outside five times the interquartile range of minimum distance to the next neighbor of the species. In addition, we removed any records that were potentially acquired at a market by assessing whether they occurred within the boundaries dense urbanization according to \citep{patterson2012world}. For this, we used the  \textsc{R} package \texttt{sf} to evaluate the distance of each record to the closest urban area and removed any for which the distance was 0 km. After this screening process, our georeferenced dataset included 1,370,996 records or 124 $\pm $191 records per species
+
+We then evaluated the occurrence of each record as residing in marine, freshwater, terrestrial, or estuarine localities. For this we assembled polygon shape files from Freshwater Ecosystems of the World (FEOW) \citep{abell2008freshwater} downloaded at \url{https://www.feow.org/download}, Marine Ecosystems of the World (MEOW) from The Nature Conservancy \citep{spalding2007marine} downloaded at \url{https://geospatial.tnc.org/maps}, country shape files using the R package \texttt{rnaturalearth} \citep{naturalearth}, and shape files for the global distribution of estuaries \citep{alder2003putting} downloaded at \url{https://data.unep-wcmc.org/datasets/23}. We also retrieved mean yearly (1981--2010) sea-surface salinity of each record using the Levitus dataset \citep{garcia2013world} using the R package \texttt{ocedata} \citep{ocedata}. From these five variables---marine, freshwater, terrestrial, and estuarine occurrence and salinity, we constructed five species-level variables to include in our ML classification dataset: the proportion of records classified as marine, freshwater or estuarine, mean salinity (in ppt), and median distance to the coastline (in km). A record was considered marine only if the record did not occur over land its salinity was greater than 30 ppt. A record was considered freshwater only if it was more than 5 km inland, was not within a MEOW nor estuary, was within a FEOW, and it had no value for salinity. A record was consider estuarine only if it occurred within an estuary boundary. For each species, the total number of marine, freshwater, and estuarine records was divided by the total number of records and arcsine transformed. 
+
+In addition to FishBase halohabitat designation, Our ML classification dataset therefore included 9 predictive variables: proportion of marine, freshwater and estuary records, median distance to the coast, log mean salinity, freshwater status occurring to FBDP, and marine and freshwater status according to WoRMS.  We undertook  supervised ML analysis to make revised halohabitat designations using two methods, a Breiman's random-forest algorithm (RF) \citep{breiman2001random} and a gradient boosted classification machine (GBM) \citep{friedman2001greedy}. In each case, FishBase halohabitat designation was the response variable. For our random forest analysis, we used the \texttt{randomForest} function from the  \texttt{randomForest package} \citep{r} written for \texttt{R}. We produced a forest of 10,000 trees using the default training size of two-thirds of the data to train each tree and the number of variables randomly sampled as candidates at each split set to 2 ( "mtry=2"). We performed our GBM analysis using the \texttt{H2o} package written for R \citep{h2o}. For this, we used the \texttt{h2o.gbm} function to produce 10,000 trees using 20\% of the data as a training set. We set the learning rate to 0.1, row sample rate to 1, maximum tree depth to 5, and column sample rate per tree to 0.8. We used the \texttt{h2o.predict} function to then make GBM-based predictions of halohabitat on the full dataset.
+
+To make final halohabitat predictions we compared the FishBase designations with the RF and GBM predictions for each species. For any species for which the three designations were unanimous, final halohabitat was designated as that unanimous state. For each species for which there was disagreement between the original FishBase designation and either the RF or GBM predictions, we performed a literature search to evaluate the final halohabitat state. For this process we took a conservative approach in making the final determination in regards to the euryhaline state. If any of the FishBase, RF, or GBM designations were euryhaline, but we could not establish through our literature search that the species spanned a broad range of salinities, we deferred to the stenohaline state designated by the other sources. Final predictions along with all ML dataset values are contained in Supplementary Table 1.
+
+\subsection*{Diadromy Classification}
+
+To classify each of our study species as diadramous or non diadromous, we continued with an approach similar to our halohabitat classification. We began with compiling a list of diadromous species according to \cite{corush2019evolutionary} and, if their final halohabitat designation was euryhaline, we preliminarily classified these species at "euryhaline-diadramous". All others were classified as euyhaline, fresh, or marine according to our final halohabitat designations. We then added a single species-level variable to our ML data set, the span of the distance from the coastline. Here we assumed that those with higher values would make more expansive migrations between marine and freshwaters or the reverse and would therefore be indicative of diadromy. We then repeated our RF and GBM machine learning analyses with preliminary diadromy classification as the response variable using the same parameters outlined above.  For any species for which there was either disagreement between the \cite{corush2019evolutionary} list of diadromous species and RF or GBM predictions or between the original diadromy designation and either the RF or GBM predictions, we performed a subsequent literature search to make a final designation.  Final diadromous predictions are contained in Supplementary Table 1.
+
+
+\subsection*{Ancestral State Estimation and Transitions }
+
+We estimated the ancestral halohabitat-diadromy states across the ray-finned fish tree of life using stochastic character mapping \citep{bollback2006simmap} as  implemented in the R package  \texttt{phytools}. We pruned the phylogeny to include the 9738 species for which were able to assesses salinity preference and diadromous behavior. To determine the best transition-rate model, we used \texttt{fitDiscrete} in the R package  \texttt{geiger} to fit three continuous-time Markov models of trait evolution. These included an "equal rates'" model (ER),  where a single parameter governs all transition rates, a "symmetrical model" (SYM) in which forward and reverse transitions share the same parameter, and "all rates different" (ARD) model in which each transitions has its own parameter. The predictive performance of each model was assessed using Akaike Information Criterion (AIC) weights. We then used the model of discrete-trait evolution with the highest predictive performance to estimate a transition matrix, "Q", the was used in stochastic character mapping with the  \texttt{phytools} function \texttt{make.simmap}, We repeated this producedure to produced a total of 1000 character maps. For each, we set the root prior ("pi") state to freshwater stenohaline, the likely state of the most common recent ancestor of the Actinopterygii \citep{betancur2015fossil,carrete2012there,schultz2012euryhalinity,evans2008}. We summarized the character maps for each tree to generate a posterior estimate of mean number of transitions rate between each salinity preference state and visualized transitions out of and into each state using chord diagrams. In addition, we estimated the most likely state for each node in our study group's phylogeny according to highest posterior probability (PP) at each node under best-fitting model discrete character evolution. 
+
+\subsection*{Trait-dependent Diversification}
+
+Using the trimmed \citep{rabosky2018inverse} tree, we estimated speciation, extinction, and transition rate parameters for halohabitat-diadromy groups using a multistate speciation and extinction model (MuSSE) in the R package  \texttt{diversitree} \citep{fitzjohn2012diversitree}. For this we assembled a  maximum-likelihood function using an unconstrained model. We then used the maximum-likelihood coefficients to perform a Bayesian analysis, sampling the posterior probability distribution of parameter values generated through a Markov Chain Monte Carlo (MCMC) sampling routine implemented in  \texttt{diversitree}. We ran the MCMC chain for 2000 generations starting with exponential priors from an initial run of 100 generations. Our final distribution excluded 10\% of the samples as burn-in and we assessed convergence using the effective sample sizes. We then calculated net diversification rates from our post-burning samples by subtracting extinction rates from speciation rates.
+
+
+%https://opencommons.uconn.edu/cgi/viewcontent.cgi?article=1031&context=eeb_articles
+ 
+\section*{Results}
+
+
+\subsection*{Machine Learning Classification}
+
+Through our ML analysis supported by literature sources, we classified 4398 species as Marine (45.1\%), 4404 species as freshwater (45.2\%), 832 as euryhaline (8.5\%), and 106 as euryhaline-diadromous (1.1\%). RF and GBM predictions and FishBase halohabitat classifications were in agreement for 86.8 \% (8454) of our study species  Each ML procedure performed similarly in making predictions congruent with FishBase states: Random forest predictions for halohabitat states agreed with FishBase for 90\% of our study species, while GMB predictions agreed with 89\%.  With 13.2\% discordance between FishBase halohabitat and one of our ML routines, we performed literature searches to confirm halohabitat for 1304 species. 
+Most of these species were classified by FishBase as brackish (our euryhaline state; Supplementary Table !). 
+
+After literature searches, we determined that only 0.16\% of marine species and 0.057\% of freshwater species classified as such in FishBase could not be confirmed by our analysis. However, our literature-supported machine learning predictions suggest that 41.7\% of the species classified as euryhaline by FishBase were either marine or fresh.  Specifically, our analysis suggest 16.4\% of the species classified by FishBase as euryhaline are freshwater and another 25.3\% of species are marine. 
+
+Both ML predictions of diadromy were in agreement for 89.0\% (97) of the 109  species in our study that were classified by \cite{corush2019evolutionary} as diadromous. By augmenting this with literature searches, we were able to confirm that 95 (87.2\%) of these 109 species were diadromous and an additional 11 were diadromous (Supplementary Table 1).
+
+
+\subsection*{Ancestral State History and Transitions}
+
+
+%% Figure X
+\begin{figure}[ht!]
+ \includegraphics[width=1\textwidth]
+%:
+{anc_map_ARD.pdf}
+\footnotesize  \caption{The phylogenetic relationships of 9738 actinopterygian fishes as inferred by \cite{rabosky2018inverse} and their halohabitat-diadromy history. Node color reflects the state with the highest posterior probability at each internal node under an all-rates-different model of discrete character evolution. Colors at the tip of the tree reflect machine-learning predictions for halohabitat-diadraomy state. Colors for silouttes represent the  state for select groups across the ray-finned fish tree of life.}
+ \label{fig:anc} 
+\end{figure}
+
+Through fitting discrete models of halohabitat-diadromy states, we found that an all-rates-different mode fit our comparative data best (AICw=1.00). Our ancestral state reconstructions reveal that diadromy and non-diadromous euryhalinity are ancient states in the ray-finned fishes. The ancestral condition of all teleosts was likely diadromous (PP=0.724) and this state continued in the most-recent conmon ancestor of the Euteleosteomorpha (PP=0.839), while the most recent common ancestor of the neoteleosts was likely non-diadramous euryhaline (PP= 0.734; Figure \ref{fig:anc}). Non diadramous-euryhalinity continued until the most common recent ancestor of the Ovalentaria (PP=0.664, clade not highlighted in Figure \ref{fig:anc}, but see below).
+
+Using this model to produce 1000 stochastic character maps resulted in a mean of 1119 and median of 1120 halohabitat-diadromy state transitions per tree. We found that there were no direct marine-to-fresh nor fresh-to-marine transitions in our stochastic maps. The most common transition was from a euryhaline to marine state (Figure \ref{fig:chord}). Marine to euryhaline transitions were 66 times more common than marine to euryhaline-diadromous transitions and euryhaline to fresh and euryhaline-diadraomous to fresh were about as equally common  (Figure \ref{fig:chord}). Fresh to euryhaline transitions were about 8 times more common than fresh to euryhaline-diadromous transitions and transitions to marine states only occurred out of a euryhaline state (i.e., there were no euryhaline-diadromous to marine transitions (Figure \ref{fig:chord}). 
+
+As a whole, these results suggest two important patterns concerning our initial hypotheses. First marine-to-freshwater transitions are not mediated by stepwise transitions to euryhalinity, euryhalinity to didaromy, and finally diadromy to freshwater. The marine-to-fresh transition in ray-finned fishes seems to require euryhalinity, but not necessarily diadromy.  We interpret this first pattern because there appear to be no direct marine to fresh transitions in our study group and there were many more euryhaline-fresh transitions than diadromous-fresh transitions.  Second, fresh-to-marine transitions do not require diadromy because we found no evidence of diadromous-marine transitions but many euryhaline-marine transitions in our stochastic mapping.
+
+%% Figure X
+\begin{figure}[ht!]
+ \includegraphics[width=0.6\textwidth]
+%:
+{chord_ARD2.pdf}
+\footnotesize  \caption{Directionality of transitions out of each halohabitat-diadromy state. Maximum chord width represents the mean number of transitions across 1000 stochastic character maps. }
+ \label{fig:chord} 
+\end{figure}
+
+\subsection*{Diversification Patterns Across Halohabitat-diadromy Groups}
+
+Our halohabitat-diadromy dependent diversification model revealed that, for all groups, speciation rates outpaced extinction rates resulting in positive net diversification in each  (Figure \ref{fig:div}). Net diversification was lowest in euryhaline lineages, highest in diadromous lineages, and intermediate in fresh and marine lineages. Each of the state-depending net diversification rates were significantly different: there was no overlap between their respective posterior 95\% credibility intervals. The modal net-diversification rate for diadromous lineages was nearly 18 time higher than euryhaline lineages, while modal values for fresh and marine lineages were 3.4 and 2.9 times higher than euryhaline lineages, respectfully.  The modal net-diversification rate for freshwater lineages was 1.2 times greater than marine lineages  (Figure \ref{fig:div}).
+
+
+%% Figure X
+\begin{figure}[ht!]
+ \includegraphics[width=0.65\textwidth]
+%:
+{Div_rates.pdf}
+\footnotesize  \caption{Posterior density distribution of historical net diversification, speciation, and extinction, rate estimates (A,B, and C, respectively) for each halohabitat-diadromy state base on MuSSE analysis. Lines below the distributions indicate the 95\% credibility intervals and dots the modal values. }
+ \label{fig:div} 
+\end{figure}
+
+\section*{Discussion}
+
+\subsection*{Paths to Major Salinity Transitions}
+
+By using a combination of ancestral reconstructions and state-dependent diversification analysis, we uncovered complicated roles for euryhalinity and diadromy in marine-freshwater transitions. Specifically, we found that marine-freshwater transitions do not happen directly and an intermediate state is required; however, diadromy is not a requirement for theses transitions. Our best-fitting discrete model describes a transition process whereby shifts to freshwater occur out of a euryhaline, nondiadromous state as frequently as out of a euryhaline-diadromous state (Figure \ref{fig:chord}). This model also describes a process in which transitions into marine water are considerably different, only occurring through nondiadromous euryhalinity. Taken together, these results challenge Gross' \citeyearpar{gross1987evolution} intermediate state hypothesis, specifically that diadromy is the final state before colonization of a new salinity habitat. 
+
+The pathways between major salinity transitions is nicely exemplified by the percomorph lineage that includes the Aanabantaria, Carangaria, and Ovelentaria, a lineage of marine, freshwater, euryhaline, and diadromous taxa. Figure \ref{fig:oval}A depicts the phylogenetic relationships of the group according to \citep{rabosky2018inverse}, the states for each species and nodes of major lineages. Figure \ref{fig:oval}B depicts the directionality out of each halohabitat-diadromy state. These results symbolize the multiple pathways taken to freshwater transitions by fishes. For some groups, there is overwhelming evidence that euryhalinity alone was the final state before a transition to freshwater (e.g., Andrianichthyidae and Cichliformes). In others, namely the Anabantaria, Atheriniformes and Cyprinodontiformes, diadromous and non-diadromous paths are common. For marine transitions, we found no evidence of diadromy as the path, only euryhalinity (Figure \ref{fig:ovalmar}).
+
+To our knowledge, this study is the first to include both euryhalinity and diadromy in a empirical analysis of marine-freshwater transitions in fishes. However, other studies have found that diadromy is not required for either marine-to-fresh or fresh-to-marine transition. In a broad study of diadrodmy in ray-finned fishes, \cite{corush2019evolutionary} found that marine-to-fresh transitions often included a diadromous ancestor, however, this was not always the case. \cite{corush2019evolutionary} also found that direct marine-to-fresh transitions or the reverse, although rare, were possible. This contrasts our results---we inferred no direct transitions from marine to fresh or vice versa (Figure \ref{fig:chord}))---and suggest that this may be due to the fact that  \cite{corush2019evolutionary} did not include euryhalinity as a state in that study's analysis. 
+
+ \cite{betancur2010molecular} and \cite{betancur2012apparent} found that marine-to-freshwater transitions were common in ariid catfishes, a group in which diadromy in conspicuously absent. Considered within the larger context of our broader comparative study, we found a similar pattern in  the Arioidea, the siluriform clade containing the preponderance of marine catfishes. Within the group, transitions to a marine state occurred only through a euryhaline state (Figure \ref{fig:cat}). This is not surprising given that diadromy is absent not just within the the Arioidea (Figure \ref{fig:cat}A), but within the entire Ostariophysi as well (Figure \ref{fig:anc}).
+
+In a study that focused on clupeiform fishes, \cite{bloom2012molecular} found that diadromy played only a minor role in transitions between marine and freshwater biomes. Like our general trend, they found that diadromy is only rarely an intermediate condition between marine and freshwater lineages and that no marine species descended from a diadromous ancestor. Our results specific to the clupeiforms contrast this previous study. Within the two major clades of freshwater clupeiforms, lineages within the Engraulini and Dorosomatidae, we found each to have a diadromous ancestor (Figure \ref{fig:clupe}A) and that a transition to freshwater from diadramomy was a common path (Figure \ref{fig:clupe}B).
+
+Our analysis suggests that transitions to marine waters are mediated solely by the acquisition of euryhalinity. This result corroborates the analysis of \citep{mcdowall2001diadromy} who found no marine lineages of diadromous ancestry. Perhaps the logical pathway to marine invasions from a diadromous lineage, if it were to happen at all, would be through catadromy \citep{gross1987evolution}, a life history strategy in which reproduction occurs in marine waters and individuals migrate to freshwater for feeding and growth. In this scenario, allopatric speciation due to reproductive isolation is less likely because events that isolate populations, such as vacariance, in marine systems are rare compared to freshwater systems  \citep{palumbi1994genetic,albert2011historical,seehausen2014speciation,bloom2013freshwater,bierne2003habitat} and therefore "sea-locked" catadromous lineages are less likely to occur.
+
+
+%% Figure X
+\begin{figure}[ht!]
+ \includegraphics[width=1\textwidth]
+%:
+{oval_fw_clade.pdf}
+\footnotesize  \caption{ (A) The phylogenetic relationships of the Ovalentaria and Carangaria and other closely related lineages as inferred by \cite{rabosky2020speciation} and superimposed halohabitat-diadromy states and transitions for predominately freshwater lineages. Collapsed clades represent predominantly marine lineages. Square shapes at nodes and tips of the phylogeny represent maximum-likelihood derived state estimates and machine learning predictions for each species, respectively.  (B)  Directionality of transitions out of each halohabitat-diadromy state  for predominantly freshwater lineages. Maximum chord width represents the mean number of transitions across 1000 stochastic character maps. }
+ \label{fig:oval} 
+\end{figure}
+
+In uncovering that net diversification rates are significantly different across major halohabitat-diadromy states, we suggest that euryhalinity and diadromy play different evolutionary roles in major salinity transitions. The net diversification rate of non-diadromous euryhaline lineages, although positive, is extraordinarily low compared to diadromous species (Figure \ref{fig:div}A). This is due in large part to the high extinction rate of non-diadromous euryhaline lineages (Figure \ref{fig:div}C).  Because of this, we assert that the acquisition of euryhalinity is something an evolutionary deadend and a true transitional state, while diadromy is an adaptive life history as well as a path to potential new habitats, at least to freshwaters. Coupled with our stochastic mapping analysis which revealed that both euryhalinity and diadromy are intermediate states in transitions to freshwater, but only euryhalinity is an intermediate state in transitions to marine water, we assert that euryhaline lineages escape habitats of broad salinity habitats back to stenohaline environments under strong negative selective pressure, while diadromous lineages thrive between salinity environments. This contrast may be due to several biotic and abiotic factors. Diadromous lineages typically span large geographic ranges and this would tend to reduce diversification due to increased gene flow \citep{palumbi1994genetic}; however, by entering freshwaters to reproduce, populations of diadromous lineages may potentially be subject to vicariance events that reduce gene flow \citep{mcdowall2001diadromy,seehausen2014speciation}. These events may include several processes linked to diversification in freshwaters, namely landlocking due to glacial activity \citep{bell1994introduction} or river capture and sea-level oscillations \citep{feutry2013evolution, albert2020diversification}. 
+
+
+Most of the non-diadromous euryhaline species in our study are estuarine (Supplemetary Table 1). Many studies have demonstrated that estuarine habitats are subject to repeated geographic disturbances driven by oscillations in sea level \citep{shen2011plio,marko2010expansion} and that this process drives diversification and high levels of species richness \citep{bilton2002dispersal, wilson2006genetic}. Our results appear to be at odds with this body or work. We note that the net diversification rate of euyhaline estuarine lineages in our study is positive, even if low due to relatively modest speciation, but slightly lower extinction rate (Figure \ref{fig:div}). We suggest that this contradiction can be reconciled if we see estuaries as areas of frequent diversification events by resident lineages, contributing to a positive net diversification rate; however, due to the high species richness, colonizing this biome from marine and especially freshwater is difficult due to increased competition \citep{betancur2012apparent, fukami2007immigration, meyer2007effects, brockhurst2007niche,wiens2005niche}. Thus, euryhaline lineages may flea estuarine environments for marine or, less often, freshwaters in the face of this competition.
+
+\subsection*{Machine Learning and Comparative Data}
+
+Overall, our ML halohabitat assignments were largely congruent with those taken from FishBase; however, for euryhaline species, the halohabitat states assigned through our analysis differ significantly from the states reported in FishBase.  Taking the cypriniforms as an example, of the 102 species included in our study that FishBase classified as brackish, 88 of these where classified as fresh according to our ML results. For all of these records, we could find no determinative records of marine or estuarine occurrence in the literature or we found statements in the literature that unambiguously indicated a freshwater status (Supplementary Table 1). For many of these euryhaline species, FishBase classifies them as brackish, despite explicitly reporting habitat and behavioral information that does not support this classification or reports estuarine of brackish residence with no supporting reference. For instance, the cyprinid \textit{Acrossocheilus iridescens} is classified as brackish, however, there is no supporting literature citation and statements about habitat refer only to freshwaters. We would like to underscore that FishBase represents an extremely valuable tool for comparative and ecological research. Nonetheless, we also suggest that researchers should scrutinize the ecological information compiled by this important database before undertaking comparative analysis using these data.
+
+\subsection*{Conclusions}
+
+Taking these results as a whole, we assert that euryhalinity was a key innovation that permitted ray-finned fishes to transition between marine and freshwater biomes; however, the acquisition of euryhalinity constrains diversification and must be seen a transitional state rather than an adaptive phenotype.  Diadromy, on the other hand, represents an adaptive life history strategy in addition to being a transitional phenotype in shifts from marine to fresh waters only. Furthermore, ecological and abiotic factors likely play important roles in shaping transition dynamics. Specifically, higher competition in new niches made available by the ability to withstand a broad range of salinity (e.g., estuaries) may promote transitions to stenohaline biomes, while different frequencies of vicariance events between marine and freshwater realms may promote diversification through diadromy in the path to freshwater and limit them in the path to the marine realm.
+
+\subsubsection*{Data Availability}
+Code and data for our analyses are available at https://github.com/ckenaley/SalinityTransitions and Dryad Repository XXXXXXXX.
+
+\subsubsection*{Author Contributions}
+CK  conceived the study, WO and CK performed the analyses and wrote the manuscript.
+
+\subsubsection*{Funding}
+Funding for this study was provided Morrissey College of Arts and Sciences at Boston College (both CK and WO).
+
+\subsubsection*{Acknowledgments}
+We wish to thank the members of the Kenaley Lab past and present, the staff at Boston College's Information Technology Services for assistance in using their Linux Cluster, and xx anonymous reviewers whose suggestions greatly improved the manuscript
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+%%%%%%%%%%%%%%%%%%%%%
+% You can either type your references following the examples below, or
+% compile your BiBTeX database and paste the contents of your .bbl file
+% here. The amnatnat.bst style file should work for this---but please
+% let us know if you run into any hitches with it!
+% The list below includes sample journal articles, book chapters, and
+% Dryad references.
+
+
+\bibliographystyle{evolution.bst}
+\bibliography{halotolerance.bib}
+
+
+
+% Please reset counters for the appendix (thus normally figure A1, 
+% figure A2, table A1, etc.).
+
+% In certain cases, it may be appropriate to have a PRINT appendix in
+% addition to (or instead of) an online appendix. In this case, please 
+% name the print appendix Appendix A, and any subsequent appendixes (if 
+% there are any) should be named Online Appendix B, Online Appendix C,
+% etc.
+
+\renewcommand{\theequation}{s\arabic{equation}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\setcounter{equation}{0} % reset counter 
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+\section*{Supplementary Content}
+%% Figure X
+
+
+\begin{figure}[ht!]
+ \includegraphics[width=1\textwidth]
+%:
+{oval_marine_clade.pdf}
+\footnotesize  \caption{(A) The phylogenetic relationships of the Ovalentaria as inferred by \cite{rabosky2020speciation} and superimposed halohabitat-diadromy states and transitions for predominately marine lineages. Collapsed clades represent predominantly freshwater lineages. Square shapes at nodes and tips of the phylogeny represent maximum-likelihood derived state estimates and machine learning predictions for each species, respectively.   (B)  Directionality of transitions out of each halohabitat-diadromy state  for predominantly marine lineages. Maximum chord width represents the mean number of transitions across 1000 stochastic character maps.}
+ \label{fig:ovalmar} 
+\end{figure}
+
+
+
+\begin{figure}[ht!]
+ \includegraphics[width=1\textwidth]
+%:
+{cat_clade.pdf}
+\footnotesize  \caption{The phylogenetic relationships of Arioid catfishes as inferred by \cite{rabosky2020speciation} and superimposed halohabitat-diadromy states and transitions for this predominately marine lineages. Collapsed clades represent predominantly freshwater sister lineage Ictaluroidea. Square shapes at nodes and tips of the phylogeny represent maximum-likelihood derived state estimates and machine learning predictions for each species, respectively.  Inset chord diagram represents the directionality of transitions out of each halohabitat-diadromy state for the Arioidea. Maximum chord width represents the mean number of transitions across 1000 stochastic character maps.}
+ \label{fig:cat} 
+\end{figure}
+
+
+\begin{figure}[ht!]
+ \includegraphics[width=1\textwidth]
+%:
+{clupe_fw.pdf}
+\footnotesize  \caption{(A) The phylogenetic relationships of the Clupeiformes as inferred by \cite{rabosky2020speciation} and superimposed halohabitat-diadromy states and transitions for predominately freshwater lineages. Collapsed clades represent predominantly marine lineages. Square shapes at nodes and tips of the phylogeny represent maximum-likelihood derived state estimates and machine learning predictions for each species, respectively. (B) Directionality of transitions out of each halohabitat-diadromy state for the two predominantly freshwater lineages. Maximum chord width represents the mean number of transitions across 1000 stochastic character maps.}
+ \label{fig:clupe} 
+\end{figure}
+
+
+\end{document}
