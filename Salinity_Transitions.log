@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.26)  16 AUG 2023 12:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.26)  25 AUG 2023 11:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -573,10 +573,10 @@ Overfull \hbox (0.35522pt too wide) in paragraph at lines 119--120
 <./figures//anc_map_ARD.pdf, id=254, 1916.34157pt x 853.57892pt>
 File: ./figures//anc_map_ARD.pdf Graphic file (type pdf)
 <use ./figures//anc_map_ARD.pdf>
-Package pdftex.def Info: ./figures//anc_map_ARD.pdf  used on input line 184.
+Package pdftex.def Info: ./figures//anc_map_ARD.pdf  used on input line 183.
 (pdftex.def)             Requested size: 469.75502pt x 209.23936pt.
 
-Overfull \hbox (5.90125pt too wide) in paragraph at lines 189--190
+Overfull \hbox (5.90125pt too wide) in paragraph at lines 188--189
 \OT1/pplx/m/n/10.95 Through fit-ting dis-crete mod-els of halohabitat-diadromy 
 states, we found that an all-rates-different
  []
@@ -585,47 +585,43 @@ states, we found that an all-rates-different
 <./figures//chord_ARD2.pdf, id=462, 276.29456pt x 300.90414pt>
 File: ./figures//chord_ARD2.pdf Graphic file (type pdf)
 <use ./figures//chord_ARD2.pdf>
-Package pdftex.def Info: ./figures//chord_ARD2.pdf  used on input line 199.
+Package pdftex.def Info: ./figures//chord_ARD2.pdf  used on input line 198.
 (pdftex.def)             Requested size: 281.85587pt x 306.97325pt.
 <./figures//Div_rates.pdf, id=465, 397.485pt x 505.89pt>
 File: ./figures//Div_rates.pdf Graphic file (type pdf)
 <use ./figures//Div_rates.pdf>
-Package pdftex.def Info: ./figures//Div_rates.pdf  used on input line 213.
+Package pdftex.def Info: ./figures//Div_rates.pdf  used on input line 212.
 (pdftex.def)             Requested size: 305.33789pt x 388.62563pt.
  [14] [15 <./figures//chord_ARD2.pdf>]
 [16 <./figures//Div_rates.pdf>] [17]
 <./figures//oval_fw_clade.pdf, id=1329, 744.15509pt x 456.60216pt>
 File: ./figures//oval_fw_clade.pdf Graphic file (type pdf)
 <use ./figures//oval_fw_clade.pdf>
-Package pdftex.def Info: ./figures//oval_fw_clade.pdf  used on input line 239.
+Package pdftex.def Info: ./figures//oval_fw_clade.pdf  used on input line 238.
 (pdftex.def)             Requested size: 469.75502pt x 288.23915pt.
  [18] [19 <./figures//oval_fw_clade.pdf>]
 [20] [21] (./Salinity_Transitions.bbl [22] [23] [24] [25] [26] [27])
-<./figures//oval_marine_clade.pdf, id=23171, 518.53735pt x 470.98016pt>
+<./figures//oval_marine_clade.pdf, id=23169, 518.53735pt x 470.98016pt>
 File: ./figures//oval_marine_clade.pdf Graphic file (type pdf)
 <use ./figures//oval_marine_clade.pdf>
 Package pdftex.def Info: ./figures//oval_marine_clade.pdf  used on input line 3
-14.
+12.
 (pdftex.def)             Requested size: 469.75502pt x 426.6738pt.
-<./figures//cat_clade.pdf, id=23176, 395.0196pt x 429.62706pt>
+<./figures//cat_clade.pdf, id=23174, 395.0196pt x 429.62706pt>
 File: ./figures//cat_clade.pdf Graphic file (type pdf)
 <use ./figures//cat_clade.pdf>
-Package pdftex.def Info: ./figures//cat_clade.pdf  used on input line 324.
+Package pdftex.def Info: ./figures//cat_clade.pdf  used on input line 322.
 (pdftex.def)             Requested size: 469.75502pt x 510.9282pt.
 
 
-LaTeX Warning: Float too large for page by 80.17247pt on input line 327.
+LaTeX Warning: Float too large for page by 80.17247pt on input line 325.
 
-<./figures//clupe_fw.pdf, id=23181, 590.51279pt x 448.9172pt>
+<./figures//clupe_fw.pdf, id=23179, 590.51279pt x 448.9172pt>
 File: ./figures//clupe_fw.pdf Graphic file (type pdf)
 <use ./figures//clupe_fw.pdf>
-Package pdftex.def Info: ./figures//clupe_fw.pdf  used on input line 333.
+Package pdftex.def Info: ./figures//clupe_fw.pdf  used on input line 331.
 (pdftex.def)             Requested size: 469.75502pt x 357.12038pt.
-[28]
-
-LaTeX Warning: Text page 29 contains only floats.
-
-[29 <./figures//oval_marine_clade.pdf>] [30 <./figures//cat_clade.pdf>]
+[28] [29 <./figures//oval_marine_clade.pdf>] [30 <./figures//cat_clade.pdf>]
 [31 <./figures//clupe_fw.pdf>] (./Salinity_Transitions.aux)
 Package rerunfilecheck Info: File `Salinity_Transitions.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
@@ -644,10 +640,10 @@ Here is how much of TeX's memory you used:
 /usr/local/texlive/2023/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/lo
 cal/texlive/2023/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/tex
 live/2023/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on Salinity_Transitions.pdf (31 pages, 8138368 bytes).
+Output written on Salinity_Transitions.pdf (31 pages, 8138411 bytes).
 PDF statistics:
- 42462 PDF objects out of 45951 (max. 8388607)
- 28236 compressed objects within 283 object streams
+ 42460 PDF objects out of 45951 (max. 8388607)
+ 28234 compressed objects within 283 object streams
  101 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
